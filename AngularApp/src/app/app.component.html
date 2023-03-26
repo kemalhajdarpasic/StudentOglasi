@@ -1,13 +1,17 @@
 <mat-toolbar color="primary">
   <span>StudentOglasi</span>
   <button mat-button routerLink="/">Početna</button>
+
   <button mat-button routerLink="/putanja-prakse-pregled">Prakse</button>
   <button mat-button  routerLink="/putanja-stipendije-pregled">Stipendije</button>
   <button mat-button routerLink="/putanja-smjestaj-pregled">Smještaj</button>
   <button mat-button routerLink="/putanja-univerziteti-pregled">Univerziteti</button>
   <button mat-button routerLink="/putanja-fakulteti-pregled">Fakulteti</button>
 
-    <mat-button-toggle  [matMenuTriggerFor]="upravljanje" style="font-size:medium;"  >Upravljanje podacima</mat-button-toggle>
+
+
+  <mat-button-toggle *ngIf="loginInfo().autentifikacijaToken?.korisnik?.isAdmin" mat-button [matMenuTriggerFor]="upravljanje">Upravljanje podacima</mat-button-toggle>
+
     <mat-menu #upravljanje="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="korisnici">Korisnici</button>
       <button mat-menu-item [matMenuTriggerFor]="oglasi">Oglasi</button>
