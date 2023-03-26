@@ -35,6 +35,7 @@ import { StipendijeComponent } from './stipendije/stipendije.component';
 import { SmjestajiComponent } from './smjestaji/smjestaji.component';
 import {MatCardModule} from "@angular/material/card";
 import { RegistracijaComponent } from './registracija/registracija.component';
+
 import { HomeComponent } from './home/home.component';
 import { FirmeComponent } from './firme/firme.component';
 import { StipenditoriComponent } from './stipenditori/stipenditori.component';
@@ -47,6 +48,10 @@ import { SmjestajPregledComponent } from './smjestaj-pregled/smjestaj-pregled.co
 import { UniverzitetiPregledComponent } from './univerziteti-pregled/univerziteti-pregled.component';
 import { FakultetiPregledComponent } from './fakulteti-pregled/fakulteti-pregled.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
+
+
+import { ProfilComponent } from './profil/profil.component';
+import {MatChipsModule} from "@angular/material/chips";
 
 
 @NgModule({
@@ -72,7 +77,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     StipendijePregledComponent,
     SmjestajPregledComponent,
     UniverzitetiPregledComponent,
-    FakultetiPregledComponent
+    FakultetiPregledComponent,
+    ProfilComponent
   ],
     imports: [
         BrowserModule,

@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   }
 
   private getSmjestaji() {
-    this.httpKlijent.get(MojConfig.adresa_servera + "/Smjestaj/GetAll").subscribe(((x: any) => {
+    this.httpKlijent.get(MojConfig.adresa_servera + "/Smjestaj/Get").subscribe(((x: any) => {
       this.smjestajiPodaci = x;
     }));
   }

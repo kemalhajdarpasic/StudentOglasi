@@ -13,7 +13,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="standard" id="filterIzdavac">
+  <mat-form-field *ngIf="this.korisnik.isAdmin" appearance="standard" id="filterIzdavac">
     <mat-label>Izdavač</mat-label>
     <mat-select [(ngModel)]="this.filterIzdavac">
       <mat-option *ngFor="let izdavac of this.izdavaciPodaci" [value]="izdavac.id">
@@ -120,7 +120,7 @@
       <input matInput type="number" [(ngModel)]="this.smjestaj.kapacitet">
     </mat-form-field>
 
-    <mat-form-field appearance="fill" id="izdavac">
+    <mat-form-field *ngIf="this.korisnik.isAdmin" appearance="fill" id="izdavac">
       <mat-label>Izdavač</mat-label>
       <mat-select [(ngModel)]="this.smjestaj.izdavacID" name="food">
         <mat-option *ngFor="let izdavac of this.izdavaciPodaci" [value]="izdavac.id">
@@ -129,7 +129,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" id="grad">
+    <mat-form-field [style.margin-left]="this.korisnik.isIzdavacSmjestaja==true? '5%':'1.5%'" appearance="fill" id="grad">
       <mat-label>Grad</mat-label>
       <mat-select [(ngModel)]="this.smjestaj.gradID" name="food">
         <mat-option *ngFor="let grad of this.gradoviPodaci" [value]="grad.id">

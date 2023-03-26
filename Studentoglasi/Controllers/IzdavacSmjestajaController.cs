@@ -98,6 +98,29 @@ namespace StudentOglasi.Controllers
             return Ok(data);
         }
 
+        [HttpGet]
+        public ActionResult GetByID(int id)
+        {
+            var x = _dbContext.IzdavacSmjestaja.FirstOrDefault(s => s.ID == id);
+            if (x != null)
+            {
+                var izdavac = new
+                {
+                    id = x.ID,
+                    password = x.Password,
+                    username = x.Username,
+                    ime = x.Ime,
+                    slika = x.Slika,
+                    prezime = x.Prezime,
+                    broj_telefona = x.Telefon,
+                    email = x.Email
+                };
+                return Ok(izdavac);
+            }
+
+            else return BadRequest();
+        }
+
         [HttpPost]
         public ActionResult Obrisi([FromBody] int id)
         {

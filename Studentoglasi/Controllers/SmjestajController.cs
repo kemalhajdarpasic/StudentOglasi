@@ -89,9 +89,10 @@ namespace StudentOglasi.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAll()
+        public ActionResult Get(int? izdavacID)
         {
-            var data = _dbContext.Smjestaj
+            var data = _dbContext.Smjestaj.
+                Where(x => izdavacID == null || x.IzdavacID == izdavacID)
                 .OrderBy(x => x.ID)
                 .Select(x => new
                 {

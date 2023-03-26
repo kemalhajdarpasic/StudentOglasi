@@ -113,7 +113,7 @@ export class RegistracijaComponent implements OnInit {
     formData.append('fakultetID', this.fakultetID);
 
     this.httpKlijent.post(MojConfig.adresa_servera + "/Student/Snimi", formData).subscribe((s: any) => {
-      this.router.navigateByUrl("/putanja-studenti");
+      this.router.navigateByUrl("/");
     })
   }
 
@@ -128,7 +128,7 @@ export class RegistracijaComponent implements OnInit {
     formData.append('email', this.email);
     formData.append('broj_telefona', this.broj_telefona);
     this.httpKlijent.post(MojConfig.adresa_servera+"/IzdavacSmjestaja/Snimi",formData).subscribe((x:any)=>{
-      this.router.navigateByUrl("/putanja-studenti");
+      this.router.navigateByUrl("/");
     })
   }
 
@@ -143,7 +143,7 @@ export class RegistracijaComponent implements OnInit {
     formData.append('email', this.email);
     formData.append('fakultetID', this.fakultetID);
     this.httpKlijent.post(MojConfig.adresa_servera+"/ReferentFakulteta/Snimi",formData).subscribe((x:any)=>{
-      this.router.navigateByUrl("/putanja-studenti");
+      this.router.navigateByUrl("/");
     })
   }
 
@@ -158,7 +158,7 @@ export class RegistracijaComponent implements OnInit {
     formData.append('email', this.email);
     formData.append('univerzitetID', this.univerzitetID);
     this.httpKlijent.post(MojConfig.adresa_servera+"/ReferentUniverziteta/Snimi",formData).subscribe((x:any)=>{
-      this.router.navigateByUrl("/putanja-studenti");
+      this.router.navigateByUrl("/");
     })
   }
 
@@ -174,7 +174,7 @@ export class RegistracijaComponent implements OnInit {
     formData.append('firmaID', this.firmaID);
     formData.append('pozicija', this.pozicija);
     this.httpKlijent.post(MojConfig.adresa_servera+"/UposlenikFirme/Snimi",formData).subscribe((x:any)=>{
-      this.router.navigateByUrl("/putanja-studenti");
+      this.router.navigateByUrl("/");
     })
   }
 
@@ -189,7 +189,7 @@ export class RegistracijaComponent implements OnInit {
     formData.append('email', this.email);
     formData.append('stipenditorID', this.stipenditorID);
     this.httpKlijent.post(MojConfig.adresa_servera+"/UposlenikStipenditora/Snimi",formData).subscribe((x:any)=>{
-      this.router.navigateByUrl("/putanja-studenti");
+      this.router.navigateByUrl("/");
     })
   }
 }

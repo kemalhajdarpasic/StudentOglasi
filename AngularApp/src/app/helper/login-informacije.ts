@@ -12,7 +12,7 @@ export interface AutentifikacijaToken {
 }
 
 export interface Korisnik {
-  iD: number;
+  id: number;
   username: string;
   slika: string;
   isStudent: boolean;

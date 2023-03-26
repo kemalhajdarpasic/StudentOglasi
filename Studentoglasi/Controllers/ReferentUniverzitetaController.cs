@@ -98,6 +98,30 @@ namespace StudentOglasi.Controllers
             return Ok(data);
         }
 
+        [HttpGet]
+        public ActionResult GetByID(int id)
+        {
+            var x = _dbContext.ReferentUniverziteta.FirstOrDefault(s => s.ID == id);
+            if (x != null)
+            {
+                var referent = new
+                {
+                    id = x.ID,
+                    password = x.Password,
+                    username = x.Username,
+                    ime = x.Ime,
+                    prezime = x.Prezime,
+                    slika = x.Slika,
+                    email = x.Email,
+                    univerzitetID = x.UnivetzitetID,
+                    naziv_univerziteta = _dbContext.Univerzitet.Find(x.UnivetzitetID)?.Naziv
+                };
+                return Ok(referent);
+            }
+
+            else return BadRequest();
+        }
+
         [HttpPost]
         public ActionResult Obrisi([FromBody] int id)
         {

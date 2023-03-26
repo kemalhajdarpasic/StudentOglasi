@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
 import {MojConfig} from "../MojConfig";
 import {formatDate} from "@angular/common";
+import {LoginInformacije} from "../helper/login-informacije";
+import {AutentifikacijaHelper} from "../helper/autentifikacija-helper";
 
 @Component({
   selector: 'app-smjestaji',
@@ -21,13 +23,21 @@ export class SmjestajiComponent implements OnInit {
   izdavaciPodaci: any;
   filterGrad: any;
   filterIzdavac: any;
+  korisnik: any;
 
   constructor(private httpKlijent:HttpClient,private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.korisnik=this.loginInfo().autentifikacijaToken?.korisnik;
     this.getSmjestaji();
     this.getGradovi();
-    this.getIzdavaci();
+
+    if(this.korisnik.isAdmin)
+      this.getIzdavaci();
+  }
+
+  loginInfo():LoginInformacije {
+    return AutentifikacijaHelper.getLoginInfo();
   }
 
   openDialog(templateRef:any) {
@@ -37,9 +47,18 @@ export class SmjestajiComponent implements OnInit {
   }
 
   private getSmjestaji() {
-    this.httpKlijent.get(MojConfig.adresa_servera + "/Smjestaj/GetAll").subscribe(((x: any) => {
-      this.smjestajiPodaci = x;
-    }));
+
+    if(this.korisnik.isIzdavacSmjestaja) {
+      this.httpKlijent.get(MojConfig.adresa_servera + "/Smjestaj/Get?izdavacID=" + this.korisnik.id).subscribe(((x: any) => {
+        this.smjestajiPodaci = x;
+      }));
+    }
+
+    else {
+      this.httpKlijent.get(MojConfig.adresa_servera + "/Smjestaj/Get").subscribe(((x: any) => {
+        this.smjestajiPodaci = x;
+      }));
+    }
   }
 
   private getGradovi() {
@@ -74,7 +93,7 @@ export class SmjestajiComponent implements OnInit {
       parking:false,
       nacinGrijanja:'',
       gradID:0,
-      izdavacID:0
+      izdavacID: this.korisnik.isIzdavacSmjestaja? this.korisnik.id : 0
     }
   }
   validacija() {

@@ -104,6 +104,31 @@ namespace StudentOglasi.Controllers
             return Ok(data);
         }
 
+        [HttpGet]
+        public ActionResult GetByID(int id)
+        {
+            var x = _dbContext.UposlenikFirme.FirstOrDefault(s => s.ID == id);
+            if (x != null)
+            {
+                var uposlenik = new
+                {
+                    id = x.ID,
+                    password = x.Password,
+                    username = x.Username,
+                    ime = x.Ime,
+                    prezime = x.Prezime,
+                    email = x.Email,
+                    firmaID = x.FirmaID,
+                    naziv_firme = _dbContext.Firma.Find(x.FirmaID)?.Naziv,
+                    pozicija = x.Pozicija,
+                    slika = x.Slika
+                };
+                return Ok(uposlenik);
+            }
+
+            else return BadRequest();
+        }
+
         [HttpPost]
         public ActionResult Obrisi([FromBody] int id)
         {

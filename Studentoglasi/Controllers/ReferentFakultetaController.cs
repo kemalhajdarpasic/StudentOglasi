@@ -100,6 +100,31 @@ namespace StudentOglasi.Controllers
             return Ok(data);
         }
 
+
+        [HttpGet]
+        public ActionResult GetByID(int id)
+        {
+            var x = _dbContext.ReferentFakulteta.FirstOrDefault(s => s.ID == id);
+            if (x != null)
+            {
+                var referent = new
+                {
+                    id = x.ID,
+                    password = x.Password,
+                    username = x.Username,
+                    ime = x.Ime,
+                    prezime = x.Prezime,
+                    slika = x.Slika,
+                    email = x.Email,
+                    fakultetID = x.FakultetID,
+                    naziv_fakulteta = _dbContext.Fakultet.Find(x.FakultetID)?.Naziv
+                };
+                return Ok(referent);
+            }
+
+            else return BadRequest();
+        }
+
         [HttpPost]
         public ActionResult Obrisi([FromBody] int id)
         {

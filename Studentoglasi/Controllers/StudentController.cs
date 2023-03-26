@@ -81,8 +81,8 @@ namespace StudentOglasi.Controllers
         [HttpGet]
         public ActionResult GetAll()
         {
-            var data = _dbContext.Student.
-                OrderBy(s => s.BrojIndeksa)
+            var data = _dbContext.Student
+                .OrderBy(s => s.BrojIndeksa)
                 .Select(s => new 
                 {
                     id = s.ID,
@@ -99,6 +99,33 @@ namespace StudentOglasi.Controllers
                 }).AsQueryable();
             return Ok(data);
         }
+
+        [HttpGet]
+        public ActionResult GetByID(int id)
+        {
+            var student = _dbContext.Student.FirstOrDefault(s => s.ID == id);
+            if (student != null)
+            {
+                var s = new
+                {
+                    id = student.ID,
+                    password = student.Password,
+                    username = student.Username,
+                    ime = student.Ime,
+                    prezime = student.Prezime,
+                    broj_indeksa = student.BrojIndeksa,
+                    nacin_studiranja = student.NacinStudiranja,
+                    godinaStudija = student.GodinaStudija,
+                    fakultetID = student.FakultetID,
+                    naziv_fakulteta = _dbContext.Fakultet.Find(student.FakultetID)?.Naziv,
+                    slika = student.Slika
+                };
+                return Ok(s);
+            }
+
+            else return BadRequest();
+        }
+
 
         [HttpPost]
         public ActionResult Obrisi([FromBody] int id)

@@ -63,12 +63,12 @@
     </div>
 
     <mat-form-field appearance="fill">
-      <mat-label>Username</mat-label>
+      <mat-label>Korisničko ime</mat-label>
       <input matInput [(ngModel)]="this.uposlenik.username">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
+      <mat-label>Lozinka</mat-label>
       <input matInput [(ngModel)]="this.uposlenik.password">
     </mat-form-field>
 
@@ -89,7 +89,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Stipenditor</mat-label>
-      <mat-select [(ngModel)]="this.uposlenik.stipenditorID" name="food">
+      <mat-select [(ngModel)]="this.uposlenik.stipenditorID">
         <mat-option *ngFor="let stipenditor of this.stipenditoriPodaci" [value]="stipenditor.id">
           {{stipenditor.naziv}}
         </mat-option>
